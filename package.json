@@ -1,0 +1,19 @@
+{
+  "name": "tensorflow-test",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "babel src -d dist --source-map"
+  },
+  "author": "Michal Stachanczyk",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-watch": "^2.0.7"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs": "^0.11.2"
+  }
+}
