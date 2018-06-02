@@ -23,7 +23,7 @@ const ys = tf.tensor1d(y);
 
 // Train the model using the data.
 model.fit(xs, ys, {
-  epochs: 10
+  epochs: 4
 }).then(() => {
   // Use the model to do inference on a data point the model hasn't seen before:
   for (var i=0.0; i<=12.0; i+= 1.0) {
@@ -37,3 +37,28 @@ model.fit(xs, ys, {
   console.log(`f(${4.5}) = ${result}`);
 
 });
+
+
+// Define function
+function predict(input) {
+  // y = a * x ^ 2 + b * x + c
+  // More on tf.tidy in the next section
+  return tf.tidy(() => {
+    const x = tf.scalar(input);
+
+    const ax2 = a.mul(x.square());
+    const bx = b.mul(x);
+    const y = ax2.add(bx).add(c);
+
+    return y;
+  });
+}
+
+// Define constants: y = 2x^2 + 4x + 8
+const a = tf.scalar(1);
+const b = tf.scalar(-4);
+const c = tf.scalar(4);
+
+// Predict output for input of 2
+const result = Array.from(predict(2).dataSync());
+console.log(`result = ${result}`);
